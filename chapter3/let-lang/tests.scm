@@ -11,10 +11,22 @@
       (positive-const "11" 11)
       (negative-const "-33" -33)
       (simple-arith-1 "-(44,33)" 11)
+      (simple-arith-2 "+(1,2)" 3)
+      (simple-arith-3 "*(-9,11)" -99)
+      (simple-arith-4 "quot(10,5)" 2)
+      (simple-arith-5 "quot(4,5)" 0)
   
+      ;; arith with minus
+      (arith-with-minus "-(minus(5),minus(10))" 5)
+      (arith-with-nested-minus "minus(-(5,minus(10)))" -15)
+
       ;; nested arithmetic
       (nested-arith-left "-(-(44,33),22)" -11)
       (nested-arith-right "-(55, -(22,11))" 44)
+      (nested-arith-1 "-(55, +(22,11))" 22)
+      (nested-arith-2 "-(minus(55), +(22,11))" -88)
+      (nested-arith-3 "*(-(55,50), +(2,2))" 20)
+      (nested-arith-4 "quot(-(5,20), +(2,2))" -3)
   
       ;; simple variables
       (test-var-1 "x" 10)

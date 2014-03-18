@@ -37,6 +37,18 @@
        minus-exp)
 
       (expression
+       ("+" "(" expression "," expression ")")
+       add-exp)
+
+      (expression
+       ("*" "(" expression "," expression ")")
+       multi-exp)
+
+      (expression
+       ("quot" "(" expression "," expression ")")
+       quot-exp)
+
+      (expression
        ("if" expression "then" expression "else" expression)
        if-exp)
 
