@@ -51,6 +51,11 @@
                 (bool-val #t)
                 (bool-val #f)))))
               
+        (minus-exp (exp1)
+          (let ((val1 (value-of exp1 env)))
+            (num-val
+              (- (expval->num val1)))))
+
         ;\commentbox{\ma{\theifspec}}
         (if-exp (exp1 exp2 exp3)
           (let ((val1 (value-of exp1 env)))

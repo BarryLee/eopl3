@@ -33,6 +33,10 @@
        zero?-exp)
 
       (expression
+       ("minus" "(" expression ")")
+       minus-exp)
+
+      (expression
        ("if" expression "then" expression "else" expression)
        if-exp)
 
