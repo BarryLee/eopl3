@@ -41,6 +41,19 @@
       (if-true "if zero?(0) then 3 else 4" 3)
       (if-false "if zero?(1) then 3 else 4" 4)
       
+      ;; test equal?
+      (test-equal?-1 "equal?(1, 1)" #t)
+      (test-equal?-2 "equal?(1, 2)" #f)
+      (test-equal?-3 "equal?(+(1,1), 2)" #t)
+
+      ;; test greater? & less?
+      (test-greater?-1 "greater?(1, 0)" #t)
+      (test-greater?-2 "greater?(10, 11)" #f)
+      (test-greater?-3 "greater?(10, -(11,1))" #f)
+      (test-less?-1 "less?(1, 2)" #t)
+      (test-less?-2 "less?(1, -1)" #f)
+      (test-less?-3 "less?(1, +(-1,2))" #f)
+
       ;; test dynamic typechecking
       (no-bool-to-diff-1 "-(zero?(0),1)" error)
       (no-bool-to-diff-2 "-(1,zero?(0))" error)
