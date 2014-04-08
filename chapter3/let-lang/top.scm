@@ -45,16 +45,6 @@
     (lambda (ans correct-ans)
       (equal? ans (sloppy->expval correct-ans))))
   
-  (define sloppy->expval 
-    (lambda (sloppy-val)
-      (cond
-        ((number? sloppy-val) (num-val sloppy-val))
-        ((boolean? sloppy-val) (bool-val sloppy-val))
-        (else
-         (eopl:error 'sloppy->expval 
-                     "Can't convert sloppy value to expval: ~s"
-                     sloppy-val)))))
-    
   ;; run-one : symbol -> expval
 
   ;; (run-one sym) runs the test whose name is sym

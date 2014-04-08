@@ -117,8 +117,43 @@
             (value-of body
               (extend-env var val1 env))))
 
+        (emptylist-exp ()
+          (list-val '()))
+
+        (cons-exp (exp1 exp2)
+          (let ((val1 (value-of exp1 env))
+                (val2 (value-of exp2 env)))
+            (let ((rv1 (expval->rval val1))
+                  (lst2 (expval->list val2)))
+              (list-val
+                (cons rv1 lst2)))))
+
+        (null?-exp (exp1)
+          (let ((val1 (value-of exp1 env)))
+            (let ((lst1 (expval->list val1)))
+              (if (null? lst1)
+                (bool-val #t)
+                (bool-val #f)))))
+
+        (car-exp (exp1)
+          (let ((val1 (value-of exp1 env)))
+            (let ((lst1 (expval->list val1)))
+              (if (null? lst1)
+                (eopl:error 'car-exp
+                            "car experts non-empty list but got ~s"
+                            lst1)
+                (sloppy->expval (car lst1))))))
+
+        (cdr-exp (exp1)
+          (let ((val1 (value-of exp1 env)))
+            (let ((lst1 (expval->list val1)))
+              (if (pair? lst1)
+                (sloppy->expval (cdr lst1))
+                (eopl:error 'cdr-exp
+                            "cdr experts non-empty list but got ~s"
+                            lst1)))))
+
         )))
 
-
-  )
+)
 

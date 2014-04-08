@@ -80,5 +80,24 @@
       (check-shadowing-in-body "let x = 3 in let x = 4 in x" 4)
       (check-shadowing-in-rhs "let x = 3 in let x = -(x,1) in x" 2)
 
+      ;; test list operations
+      (test-emptylist "emptylist" ())
+      (test-null?-t "null?(emptylist)" #t)
+      
+      (test-cons-1 "cons(1,emptylist)" (1))
+      (test-cons-2 "cons(1,cons(2,emptylist))" (1 2))
+      (test-cons-3 "cons(cons(1,emptylist),cons(2,emptylist))" ((1) 2))
+      (test-cons-4 "cons(cons(1,emptylist),cons(cons(2,emptylist),emptylist))" ((1) (2)))
+      (test-cons-5 "cons(zero?(1),emptylist)" (#f))
+
+      (test-null?-f "null?(cons(1,emptylist))" #f)
+
+      (test-car-1 "car(cons(1,emptylist))" 1)
+      (test-car-2 "car(cons(zero?(0),emptylist))" #t)
+      (test-car-3 "car(cons(cons(1,emptylist),emptylist))" (1))
+
+      (test-cdr-1 "cdr(cons(1,emptylist))" ())
+      (test-cdr-2 "cdr(cons(1,cons(2,emptylist)))" (2))
+
       ))
   )

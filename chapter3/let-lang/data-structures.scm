@@ -12,7 +12,9 @@
     (num-val
       (value number?))
     (bool-val
-      (boolean boolean?)))
+      (boolean boolean?))
+    (list-val
+      (lst list?)))
 
 ;;; extractors:
 
@@ -32,11 +34,36 @@
 	(bool-val (bool) bool)
 	(else (expval-extractor-error 'bool v)))))
 
+  (define expval->list
+    (lambda (v)
+      (cases expval v
+    (list-val (lst) lst)
+    (else (expval-extractor-error 'list v)))))
+
   (define expval-extractor-error
     (lambda (variant value)
       (eopl:error 'expval-extractors "Looking for a ~s, found ~s"
 	variant value)))
 
+  (define expval->rval
+    (lambda (v)
+      (cases expval v
+    (num-val (num) num)
+    (bool-val (bool) bool)
+    (list-val (lst) lst)
+    (else (eopl:error 'expval-extractors "Unknown type ~s" v)))))
+
+  (define sloppy->expval 
+    (lambda (sloppy-val)
+      (cond
+        ((number? sloppy-val) (num-val sloppy-val))
+        ((boolean? sloppy-val) (bool-val sloppy-val))
+        ((list? sloppy-val) (list-val sloppy-val))
+        (else
+         (eopl:error 'sloppy->expval 
+                     "Can't convert sloppy value to expval: ~s"
+                     sloppy-val)))))
+    
 ;;;;;;;;;;;;;;;; environment structures ;;;;;;;;;;;;;;;;
 
 ;; example of a data type built without define-datatype

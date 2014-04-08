@@ -70,6 +70,26 @@
        ("let" identifier "=" expression "in" expression)
        let-exp)   
 
+      (expression
+       ("emptylist")
+       emptylist-exp)
+
+      (expression
+       ("cons" "(" expression "," expression ")")
+       cons-exp)
+
+      (expression
+       ("null?" "(" expression ")")
+       null?-exp)
+
+      (expression
+       ("car" "(" expression ")")
+       car-exp)
+
+      (expression
+       ("cdr" "(" expression ")")
+       cdr-exp)
+
       ))
   
   ;;;;;;;;;;;;;;;; sllgen boilerplate ;;;;;;;;;;;;;;;;
